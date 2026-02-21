@@ -23,6 +23,7 @@ const followSchema = new mongoose.Schema(
 );
 
 followSchema.index({ follower: 1, followee: 1 }, { unique: true });
+// schema level validation for one user only follow one time another user
 
 const followModel = mongoose.model("follows", followSchema);
 
