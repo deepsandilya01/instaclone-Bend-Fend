@@ -41,5 +41,17 @@ postRouter.post(
   identifyUser,
   postController.likePostController,
 );
+postRouter.post(
+  "/unlike/:postId",
+  identifyUser,
+  postController.unLikePostController,
+);
+
+/**
+ * @route GET /api/posts/feed
+ * @description get all the post created in the DB
+ * @access private
+ */
+postRouter.get("/feed", identifyUser, postController.getFeedController);
 
 module.exports = postRouter;

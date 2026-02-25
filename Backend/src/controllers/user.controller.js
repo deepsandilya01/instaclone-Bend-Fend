@@ -66,48 +66,7 @@ async function unfollowUserController(req, res) {
   });
 }
 
-async function changeFollowerStatus(req, res) {
-  try {
-    const followee = req.user.username; // logged-in user (receiver)
-    const follower = req.params.username; // sender
-    const { status } = req.body;
-
-    // 1. validate status
-    if (!["accepted", "rejected"].includes(status)) {
-      return res.status(400).json({
-        message: "Status must be accepted or rejected",
-      });
-    }
-
-    // 2. find follow request (EXACT MATCH)
-    const followRequest = await followModel.findOne({
-      follower: follower,
-      followee: followee,
-    });
-
-    if (!followRequest) {
-      return res.status(404).json({
-        message: "Follow request not found",
-      });
-    }
-
-    // 3. update status
-    followRequest.status = status;
-    await followRequest.save();
-
-    return res.status(200).json({
-      message: "Follow status updated successfully",
-      data: followRequest,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      message: error.message,
-    });
-  }
-}
-
 module.exports = {
   followUserController,
   unfollowUserController,
-  changeFollowerStatus,
 };

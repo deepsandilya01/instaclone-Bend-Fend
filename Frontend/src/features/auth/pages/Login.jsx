@@ -1,7 +1,8 @@
-import { Link, useNavigate } from "react-router";
+import React, { useState } from "react";
 import "../style/form.scss";
+import { Link } from "react-router";
 import { useAuth } from "../hooks/useAuth";
-import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Login = () => {
   const { user, loading, handleLogin } = useAuth();
@@ -22,7 +23,7 @@ const Login = () => {
   if (loading) {
     return (
       <main>
-        <h1>Loading...</h1>
+        <h1>Loading.....</h1>
       </main>
     );
   }
@@ -53,7 +54,7 @@ const Login = () => {
           <button className="button primary-button">Login</button>
         </form>
         <p>
-          Dont have an account ? <Link to="/register">Register</Link>{" "}
+          Don't have an account ? <Link to={"/register"}>Create One.</Link>
         </p>
       </div>
     </main>

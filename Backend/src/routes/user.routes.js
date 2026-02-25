@@ -26,13 +26,4 @@ userRouter.post(
   userController.unfollowUserController,
 );
 
-/**
- * @route Patch: /api/users/follow/:username
- * @description Change the status of follow request
- */
-userRouter.patch(
-  "/follow-requests/:username",
-  identifyUser,
-  userController.changeFollowerStatus
-);
 module.exports = userRouter;

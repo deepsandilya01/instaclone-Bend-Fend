@@ -1,15 +1,15 @@
 .button {
   border: none;
-  padding: 0.5rem 1rem;
-  font-size: 1.3rem;
-  font-weight: 600;
-  border-radius: 0.5rem;
+  outline: none;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border-radius: 1rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 
   &.primary-button {
-    background-color: #421af2;
-    color: whitesmoke;
+    background-color: #d20c3d;
+    color: rgb(255, 245, 236);
   }
 
   &:active {

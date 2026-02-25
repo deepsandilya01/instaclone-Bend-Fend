@@ -1,28 +1,26 @@
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
-import { useState } from "react";
 
 const Register = () => {
+  const { loading, handleRegister } = useAuth();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
-  const { user, loading, handleRegister } = useAuth();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     await handleRegister(username, email, password);
-
     navigate("/");
   };
 
   if (loading) {
     return (
       <main>
-        <h1>Loading...</h1>
+        <h1>Loading....</h1>
       </main>
     );
   }
@@ -33,7 +31,7 @@ const Register = () => {
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
           <input
-            onInput={(e) => {
+            onChange={(e) => {
               setUsername(e.target.value);
             }}
             type="text"
@@ -42,16 +40,16 @@ const Register = () => {
             placeholder="Enter username"
           />
           <input
-            onInput={(e) => {
+            onChange={(e) => {
               setEmail(e.target.value);
             }}
-            type="text"
+            type="email"
             name="email"
             id="email"
-            placeholder="Enter your email"
+            placeholder="Enter email address"
           />
           <input
-            onInput={(e) => {
+            onChange={(e) => {
               setPassword(e.target.value);
             }}
             type="password"
@@ -62,7 +60,7 @@ const Register = () => {
           <button className="button primary-button">Register</button>
         </form>
         <p>
-          Dont have an account ? <Link to="/login">Login</Link>{" "}
+          Already have an account ? <Link to={"/login"}>Login to account.</Link>
         </p>
       </div>
     </main>
